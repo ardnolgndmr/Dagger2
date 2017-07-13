@@ -18,13 +18,38 @@ android {
         }
     }
 }
+ext{
+    supportLibraryVersion = '25.3.1'
+    daggerVersion = '2.9'
+    retrofitVersion = '2.2.0'
+    butterknifeVersion = '8.5.1'
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+
+    //rest interactions
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    //http logging
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.2'
+
+    //JSON Parsing
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile 'com.google.code.gson:gson:2.7'
+
+
+    //injection
+    compile "com.google.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    compile "com.jakewharton:butterknife:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+    provided 'javax.annotation:jsr250-api:1.0'
+
+
+    compile 'com.jakewharton.timber:timber:4.3.1'
+
 }
